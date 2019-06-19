@@ -16,7 +16,11 @@ public class Player : MonoBehaviour
     {
         float HThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         float xOffset = Speed * HThrow * Time.deltaTime ;
-        print(xOffset);
-        
+        float dX = transform.localPosition.x + xOffset;
+        dX = Mathf.Clamp(dX, -6, 6);
+        transform.localPosition = new Vector3(dX, transform.localPosition.y, transform.localPosition.z);
+
+
+
     }
 }
