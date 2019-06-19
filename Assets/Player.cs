@@ -20,7 +20,11 @@ public class Player : MonoBehaviour
         dX = Mathf.Clamp(dX, -6, 6);
         transform.localPosition = new Vector3(dX, transform.localPosition.y, transform.localPosition.z);
 
-
+        float VThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        float yOffset = Speed * VThrow * Time.deltaTime;
+        float dY = transform.localPosition.y + yOffset;
+        dY = Mathf.Clamp(dY, -3, 3);
+        transform.localPosition = new Vector3(transform.localPosition.x, dY, transform.localPosition.z);
 
     }
 }
