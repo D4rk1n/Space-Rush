@@ -17,22 +17,46 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float HThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        float xOffset = Speed * HThrow * Time.deltaTime ;
-        float dX = transform.localPosition.x + xOffset;
-        dX = Mathf.Clamp(dX, -7, 7);
-        transform.localPosition = new Vector3(dX, transform.localPosition.y, transform.localPosition.z);
-        
+        MovementComponent();
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+       
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        print("A7a");
+    }
+
+    private void MovementComponent()
+    {
+        float HThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         float VThrow = CrossPlatformInputManager.GetAxis("Vertical");
         float yOffset = Speed * VThrow * Time.deltaTime;
-        float dY = transform.localPosition.y + yOffset;
-        dY = Mathf.Clamp(dY, -5, 5);
-        transform.localPosition = new Vector3(transform.localPosition.x, dY, transform.localPosition.z);
 
+        float dX, dY;
+        Translate(HThrow, yOffset, out dX, out dY);
+        Rotate(HThrow, VThrow, dX, dY);
+    }
+
+    private void Rotate(float HThrow, float VThrow, float dX, float dY)
+    {
         float pitch = dY * pitchFactor - Mathf.Abs(dY) * 2 * VThrow;
         float yaw = dX * yawFactor + Mathf.Abs(dX) * 2 * HThrow;
-        float roll = HThrow*rollFactor;
+        float roll = HThrow * rollFactor;
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+
+    private void Translate(float HThrow, float yOffset, out float dX, out float dY)
+    {
+        float xOffset = Speed * HThrow * Time.deltaTime;
+        dX = transform.localPosition.x + xOffset;
+        dX = Mathf.Clamp(dX, -7, 7);
+        transform.localPosition = new Vector3(dX, transform.localPosition.y, transform.localPosition.z);
+
+        dY = transform.localPosition.y + yOffset;
+        dY = Mathf.Clamp(dY, -5, 5);
+        transform.localPosition = new Vector3(transform.localPosition.x, dY, transform.localPosition.z);
     }
 }
