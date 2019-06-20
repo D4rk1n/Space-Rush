@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         float VThrow = CrossPlatformInputManager.GetAxis("Vertical");
         float yOffset = Speed * VThrow * Time.deltaTime;
         float dY = transform.localPosition.y + yOffset;
-        dY = Mathf.Clamp(dY, -3, 3);
+        dY = Mathf.Clamp(dY, -4, 4);
         transform.localPosition = new Vector3(transform.localPosition.x, dY, transform.localPosition.z);
 
         float pitch = dY * (pitchFactor - VThrow);
