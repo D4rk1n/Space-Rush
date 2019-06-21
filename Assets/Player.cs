@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Player : MonoBehaviour
     public float yawFactor = 5;
     public float rollFactor = 5;
     public GameObject DeathFx;
+    public GameObject Gun;
     // Start is called before the first frame update
 
     bool Alive;
@@ -23,17 +26,34 @@ public class Player : MonoBehaviour
         if (Alive)
         {
             MovementComponent();
+            ProccessFiring();
         }
     }
 
-
+    private void ProccessFiring()
+    {
+        if(CrossPlatformInputManager.GetButton("Fire1"))
+        {
+            Gun.SetActive(true);
+        }
+        else
+        {
+            Gun.SetActive(false);
+        }
+    }
 
     private void OnDeath()
     {
         Alive = false;
         DeathFx.SetActive(true);
+        Gun.SetActive(false);
+        Invoke("GameOver", 1);
+        
     }
-
+    void GameOver()
+    {
+        SceneManager.LoadScene(0);
+    }
     private void MovementComponent()
     {
         float HThrow = CrossPlatformInputManager.GetAxis("Horizontal");
