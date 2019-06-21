@@ -24,6 +24,6 @@ public class CollisionHandler : MonoBehaviour
     private void StartDeath()
     {
         print("Death");
-        gameObject.SendMessage("Death");
+        gameObject.SendMessage("OnDeath");
     }
 }

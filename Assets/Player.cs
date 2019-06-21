@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float pitchFactor = -5;
     public float yawFactor = 5;
     public float rollFactor = 5;
+    public GameObject DeathFx;
     // Start is called before the first frame update
 
     bool Alive;
@@ -27,9 +28,10 @@ public class Player : MonoBehaviour
 
 
 
-    private void Death()
+    private void OnDeath()
     {
         Alive = false;
+        DeathFx.SetActive(true);
     }
 
     private void MovementComponent()
