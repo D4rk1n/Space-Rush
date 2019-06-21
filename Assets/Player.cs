@@ -9,24 +9,27 @@ public class Player : MonoBehaviour
     public float yawFactor = 5;
     public float rollFactor = 5;
     // Start is called before the first frame update
+
+    bool Alive;
     void Start()
     {
-        
+        Alive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovementComponent();
+        if (Alive)
+        {
+            MovementComponent();
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+
+    private void Death()
     {
-       
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        print("A7a");
+        Alive = false;
     }
 
     private void MovementComponent()
