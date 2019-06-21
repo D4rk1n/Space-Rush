@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float yawFactor = 5;
     public float rollFactor = 5;
     public GameObject DeathFx;
-    public GameObject Gun;
+    public GameObject[] Guns;
     // Start is called before the first frame update
 
     bool Alive;
@@ -32,13 +32,25 @@ public class Player : MonoBehaviour
 
     private void ProccessFiring()
     {
+       
         if(CrossPlatformInputManager.GetButton("Fire1"))
         {
-            Gun.SetActive(true);
+            
+            SetEmission(true);
         }
         else
         {
-            Gun.SetActive(false);
+         
+            SetEmission(false);
+        }
+    }
+
+    private void SetEmission(bool Fire)
+    {
+        foreach (GameObject gun in Guns)
+        {
+            var emit = gun.GetComponent<ParticleSystem>().emission;
+            emit.enabled = Fire;
         }
     }
 
@@ -46,7 +58,7 @@ public class Player : MonoBehaviour
     {
         Alive = false;
         DeathFx.SetActive(true);
-        Gun.SetActive(false);
+        SetEmission(false);
         Invoke("GameOver", 1);
         
     }
