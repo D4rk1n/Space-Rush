@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         {
             
             Instantiate(DeathFX, transform.position,Quaternion.identity);
-            scoreBoard.UpdateScore();
+            scoreBoard.UpdateScore(MaxHealth * 25);
             Destroy(gameObject);
         }
     }
