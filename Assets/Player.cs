@@ -56,8 +56,11 @@ public class Player : MonoBehaviour
 
     private void OnDeath()
     {
+        var trans = gameObject.GetComponentInParent<Transform>();
         Alive = false;
         DeathFx.SetActive(true);
+        Instantiate(DeathFx , trans.position , Quaternion.identity);
+        Destroy(gameObject);
         SetEmission(false);
         Invoke("GameOver", 1);
         
