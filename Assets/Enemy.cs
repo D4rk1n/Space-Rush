@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int MaxHealth = 4;
     int currHealth;
+    public GameObject DeathFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour
     {
         if(currHealth==0)
         {
+            
+            Instantiate(DeathFX, transform.position,Quaternion.identity);
             Destroy(gameObject);
         }
     }
