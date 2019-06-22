@@ -2,29 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class ScoreBoard : MonoBehaviour
 {
-    
-    int currScore;
-    Text Score;
+    public Text Score;
+    public Text FinalScore;
     // Start is called before the first frame update
     void Start()
     {
-        currScore = 0;
-        Score = GetComponent<Text>();
-        Score.text = currScore.ToString();
-        
+        FinalScore.text = "YOUR SCORE : " + Score.text;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        Score.text = currScore.ToString();
-    }
-    public void UpdateScore(int ScorePerHit = 100)
-    {
-        currScore += ScorePerHit;
     }
 }

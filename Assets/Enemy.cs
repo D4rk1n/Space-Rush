@@ -7,12 +7,12 @@ public class Enemy : MonoBehaviour
     public int MaxHealth = 4;
     int currHealth;
     public GameObject DeathFX;
-    ScoreBoard scoreBoard;
+    Score currScore;
     // Start is called before the first frame update
     void Start()
     {
         currHealth = MaxHealth;
-        scoreBoard = FindObjectOfType<ScoreBoard>();
+        currScore = FindObjectOfType<Score>();
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         {
             
             Instantiate(DeathFX, transform.position,Quaternion.identity);
-            scoreBoard.UpdateScore(MaxHealth * 25);
+            currScore.UpdateScore(MaxHealth * 25);
             Destroy(gameObject);
         }
     }

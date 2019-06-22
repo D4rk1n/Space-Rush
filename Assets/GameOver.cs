@@ -8,7 +8,7 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("LoadGameOver", 1f);
+        Invoke("LoadGameOver", 8f);
        
     }
 

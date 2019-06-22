@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float rollFactor = 5;
     public GameObject DeathFx;
     public GameObject[] Guns;
+    public GameObject ScoreUI;
     // Start is called before the first frame update
 
     bool Alive;
@@ -59,16 +60,14 @@ public class Player : MonoBehaviour
         var trans = gameObject.GetComponentInParent<Transform>();
         Alive = false;
         DeathFx.SetActive(true);
+        ScoreUI.SetActive(true);
         Instantiate(DeathFx , trans.position , Quaternion.identity);
         Destroy(gameObject);
         SetEmission(false);
-        Invoke("GameOver", 1);
+        
         
     }
-    void GameOver()
-    {
-        SceneManager.LoadScene(0);
-    }
+
     private void MovementComponent()
     {
         float HThrow = CrossPlatformInputManager.GetAxis("Horizontal");
