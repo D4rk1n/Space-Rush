@@ -10,6 +10,7 @@ public class ScoreBoard : MonoBehaviour
     void Start()
     {
         FinalScore.text = "YOUR SCORE : " + Score.text;
+        Score.SendMessage("Stop");
     }
 
     // Update is called once per frame

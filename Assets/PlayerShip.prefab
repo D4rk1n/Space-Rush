@@ -4728,7 +4728,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211953327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.33, z: 5.21}
+  m_LocalPosition: {x: 0, y: -1.33, z: 6.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7159356839669982298}
@@ -4829,6 +4829,7 @@ MonoBehaviour:
   Guns:
   - {fileID: 1640905262}
   - {fileID: 636210618}
+  ScoreUI: {fileID: 0}
 --- !u!114 &1211953334
 MonoBehaviour:
   m_ObjectHideFlags: 0

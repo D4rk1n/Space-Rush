@@ -8,6 +8,7 @@ public class Score : MonoBehaviour
     
     int currScore;
     Text ScoreText;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,9 @@ public class Score : MonoBehaviour
     public void UpdateScore(int ScorePerHit = 100)
     {
         currScore += ScorePerHit;
+    }
+    public void Stop()
+    {
+        gameObject.SetActive(false);
     }
 }
